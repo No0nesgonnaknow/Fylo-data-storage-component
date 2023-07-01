@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Fylo data storage component</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
+body {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  background-repeat: no-repeat;
+  background-color: hsl(229, 57%, 11%);
+  background-position: bottom;
+  background-size: 100% 100%;
+}
+
+/* Add this media query for devices with width <= 375px */
+@media (max-width: 375px) {
+  body {
+    background-image: url('images/bg-mobile.png');
+    background-size: 100% 100%;
+  }
+
+  .bigger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .Fylo, .second-box {
+    background-color: hsl(228, 56%, 26%);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .Fylo {
+    border-top-right-radius: 70px;
+    width: 80%;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .second-box {
+    height: 150px;
+    width: 80%;
+    margin-top: 30px;
+  }
+
+  .second-box p {
+    margin-top: auto;
+  }
+
+  #icons img {
+    border: 2px;
+    background-color: hsl(229, 57%, 11%);
+    border-radius: 8px;
+    padding: 9px;
+    margin-right: 8px;
+    height: 15px;
+  }
+
+  #logo img {
+    height: 33px;
+  }
+
+  #logo {
+    margin-top: 3px;
+    margin-bottom: 20px;
+  }
+
+  .second-box p, #big-icon span {
+    color: hsl(229, 7%, 55%);
+  }
+
+  #big-icon {
+    font-weight: bold;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+  }
+
+  #big-icon span {
+    margin-left: 0.5rem;
+    color: hsl(229, 7%, 55%);
+    font-size: 13px;
+  }
+
+  .bold, #first-gb, #last-gb {
+    font-weight: bold;
+    color: hsl(243, 100%, 93%);
+  }
+
+  #loading-bar {
+    background-color: hsl(229, 57%, 11%);
+    height: 10px;
+    border-radius: 90px;
+    margin-top: 1rem;
+  }
+
+  #loading-progress {
+    position: relative;
+    background: linear-gradient(to right, hsl(6, 100%, 80%), hsl(335, 100%, 65%));
+    height: 100%;
+    width: 81.5%;
+    border-radius: 4px;
+    overflow: hidden; /* Add this line to hide the overflowing ball */
+  }
+
+  #loading-ball {
+    position: absolute;
+    top: 0;
+    left: 97%; /* Change right to left */
+    height: 100%;
+    width: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: loading-ball-animation 1s linear infinite; /* Add animation for smooth movement */
+  }
+
+  #loading-text,
+  #loading-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1px;
+  }
+}
+
+/* Add this media query for devices with width > 375px */
+@media (min-width: 376px) {
+  body {
+    background-image: url('images/bg-desktop.png');
+    background-size: 100% 52%;
+  }
+
+  .bigger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .Fylo, .second-box {
+    background-color: hsl(228, 56%, 26%);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .Fylo {
+    border-top-right-radius: 70px;
+    width: 12rem;
+    height: 5rem;
+    margin: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .second-box {
+    height: 3rem;
+    width: 23rem;
+    margin-top: 50px;
+  }
+
+  .second-box p {
+    margin-top: auto;
+  }
+
+  #icons img {
+    border: 2px;
+    background-color: hsl(229, 57%, 11%);
+    border-radius: 8px;
+    padding: 9px;
+    margin-right: 8px;
+    height: 15px;
+  }
+
+  #logo img {
+    height: 33px;
+  }
+
+  #logo {
+    margin-top: 3px;
+    margin-bottom: 20px;
+  }
+
+  .second-box p, #big-icon span {
+    color: hsl(229, 7%, 55%);
+  }
+
+  #big-icon {
+    font-weight: bold;
+    position: absolute;
+    top: 14.5rem;
+    right: 21rem;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+  }
+
+  #big-icon::before {
+    content: "";
+    position: absolute;
+    top: 46px;
+    right: -10px;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent hsl(0, 0%, 100%) transparent;
+    transform: rotate(45deg);
+  }
+
+  #big-icon span {
+    margin-left: 0.5rem;
+    color: hsl(229, 7%, 55%);
+    font-size: 13px;
+  }
+
+  .bold, #first-gb, #last-gb {
+    font-weight: bold;
+    color: hsl(243, 100%, 93%);
+  }
+
+  #loading-bar {
+    background-color: hsl(229, 57%, 11%);
+    height: 10px;
+    border-radius: 90px;
+    margin-top: 1rem;
+  }
+
+  #loading-progress {
+    position: relative;
+    background: linear-gradient(to right, hsl(6, 100%, 80%), hsl(335, 100%, 65%));
+    height: 100%;
+    width: 81.5%;
+    border-radius: 4px;
+    overflow: hidden; /* Add this line to hide the overflowing ball */
+  }
+
+  #loading-ball {
+    position: absolute;
+    top: 0;
+    left: 97%; /* Change right to left */
+    height: 100%;
+    width: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: loading-ball-animation 1s linear infinite; /* Add animation for smooth movement */
+  }
+
+  #loading-text,
+  #loading-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1px;
+  }
+}
+
+
+  </style>
+  
+</head>
+<body>
+<div class="bigger">
+  <div class="Fylo">
+    <div id="logo">
+      <img src="images/logo.svg" alt="logo">
+    </div>
+    <div id="icons">
+      <img src="images/icon-document.svg" alt="document">
+      <img src="images/icon-folder.svg" alt="folder">
+      <img src="images/icon-upload.svg" alt="upload">
+    </div>
+  </div>
+
+  <div class="second-box">
+    <p>
+      You’ve used <span class="bold">815 GB</span> of your storage
+    </p>
+    <div id="loading">
+      <div id="loading-bar">
+        <div id="loading-progress">
+          <div id="loading-ball"></div>
+        </div>
+      </div>
+      <div id="loading-labels">
+        <p id="first-gb">
+          0 GB
+        </p>
+        <p id="last-gb">
+          1000 GB
+        </p>
+      </div>
+    </div>
+    <div id="big-icon">
+      185 <span>GB Left</span>
+    </div>
+  </div>
+</div>
+
+<div class="attribution">
+  Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+  Coded by <a href="#">Son</a>.
+</div>
+</body>
+</html>
